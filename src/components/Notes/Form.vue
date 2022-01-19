@@ -1,36 +1,49 @@
 <template lang="pug">
 .note-form__wrapper
   form.note-form(@submit.prevent="onSubmit")
-    textarea(v-model="value", placeholder="Type your note")
+    textarea(v-model.trim="value", placeholder="Type your note")
     TagList(:items="tags", @onItemClick="handleTagClick", :isActive="isActive")
     button.btn.btnPrimary(type="submit") Add new note
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import TagList from "@/components/UI/TagList";
 
 export default {
-  components: { TagList},
+  components: { TagList },
 
   data() {
     return {
       value: "",
       tags: ["home", "work", "travel"],
       selectedTags: new Set(),
-      isActive: false
+      isActive: false,
     };
   },
 
   methods: {
+    ...mapMutations(["ADD_NOTE"]),
+
     onSubmit() {
-      this.$emit("onSubmit", {title: this.value, tags: [...this.selectedTags]});
+      if (!this.value) return;
+
+      this.ADD_NOTE({
+        title: this.value,
+        tags: [...this.selectedTags],
+      });
+
       this.value = "";
-      this.selectedTags.clear()
-      this.isActive = false
+      this.selectedTags.clear();
+      this.isActive = false;
     },
     handleTagClick(tag) {
-      this.selectedTags.add(tag)
-    }
+      if (this.selectedTags.has(tag)) {
+        this.selectedTags.delete(tag);
+      } else {
+        this.selectedTags.add(tag);
+      }
+    },
   },
 };
 </script>

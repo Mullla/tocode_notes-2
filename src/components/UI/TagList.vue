@@ -4,7 +4,7 @@ ul.tags-list
     v-for="item in items",
     :key="item",
     @click="checkItem",
-    :class="{ isPreview: isPreview, isActive: isActive}"
+    :class="{ isPreview: isPreview, isActive: isActive }"
   )
     span {{ item }}
 </template>
@@ -27,11 +27,12 @@ export default {
   },
 
   methods: {
-    checkItem (e) {
-      this.$emit('onItemClick', e.target.innerText)
-      e.target.closest('.tag-item').classList.add('isActive')
-    }
-  }
+    checkItem(e) {
+      e.target.closest(".tag-item").classList.toggle("isActive");
+
+      this.$emit("onItemClick", e.target.innerText);
+    },
+  },
 };
 </script>
 

@@ -1,20 +1,22 @@
 <template lang="pug">
 .wrapper
-  <the-header />
-    .wrapper-content
-      .container
-        <router-view />
-  <the-footer />
+  AppHeader
+
+  .wrapper-content
+    .container
+      router-view
+
+  AppFooter
 </template>
 
 <script>
-import TheHeader from "@/components/TheHeader";
-import TheFooter from "@/components/TheFooter";
+import AppHeader from "@/components/AppHeader";
+import AppFooter from "@/components/AppFooter";
 
 export default {
   components: {
-    TheHeader,
-    TheFooter,
+    AppHeader,
+    AppFooter,
   },
 };
 </script>

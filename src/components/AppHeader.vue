@@ -3,7 +3,7 @@ header.navbar
   .container
     .navbar-content
       router-link.navbar-logo(to="/") {{ title }}
-
+      //- 
       ul.navbar-list
         li.navbar-item(v-for="link in links", :key="link.alias")
           router-link.navbar-link(:to="link.url") {{ link.title }}

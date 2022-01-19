@@ -1,7 +1,7 @@
 <template lang="pug">
 .md-body
   h1 В этом приложении:
-
+  //- 
   ul(style="padding-left: 25px")
     li(style="list-style: disc") Полная настройка шаблона на Vue CLI
     li(style="list-style: disc") Установка и настройка Vue-router для Vue.js 3

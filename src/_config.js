@@ -12,5 +12,5 @@ export const LINKS = [
 ];
 
 export const app = {
-  title: 'Notes 2'
+  title: 'Notes Vuex'
 }

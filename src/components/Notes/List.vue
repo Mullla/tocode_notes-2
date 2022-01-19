@@ -3,23 +3,28 @@ ul.notes-list
   li.note-item(v-for="(note, index) in items", :key="index")
     .note-header 
       p {{ note.title }}
-      button(@click="$emit('onRemove', index)") &#10005;
+      button(@click="REMOVE_NOTE(index)") &#10005;
+      //- 
     .note-footer
       TagList(:items="note.tags", v-if="note.tags.length", isPreview)
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import TagList from "@/components/UI/TagList";
 
 export default {
-  props: {
-    items: {
-      type: Array,
-      required: true,
-    },
+  components: { TagList, TagList },
+
+  computed: {
+    ...mapGetters({
+      items: "getNotes",
+    }),
   },
 
-  components: { TagList, TagList }
+  methods: {
+    ...mapMutations(["REMOVE_NOTE"]),
+  },
 };
 </script>
 
